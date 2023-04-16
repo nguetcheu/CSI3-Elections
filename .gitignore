@@ -1,0 +1,39 @@
+# Dossiers et fichiers spécifiques à ignorer pour tous les projets
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Dossiers et fichiers générés par les outils de développement
+node_modules/
+/dist/
+/bower_components/
+/cache/
+/compiled/
+/vendor/
+/.sass-cache/
+/logs/
+/tmp/
+/.idea/
+/.vscode/
+/.meteor/
+/.gradle/
+/.webpack/
+/logs/
+*.log
+
+# Fichiers spécifiques à ignorer pour le projet Angular
+elections/elections frontEnd/node_modules/
+elections/elections frontEnd/dist/
+elections/elections frontEnd/.cache/
+elections/elections frontEnd/.sass-cache/
+elections/elections frontEnd/src/environments/environment.prod.ts
+elections/elections frontEnd/src/environments/environment.ts
+
+# Fichiers spécifiques à ignorer pour le projet Laravel
+elections/election Backend/vendor/
+elections/election Backend/node_modules/
+elections/election Backend/bootstrap/cache/*
+elections/election Backend/storage/*
+elections/election Backend/.env
+elections/election Backend/.env.example
