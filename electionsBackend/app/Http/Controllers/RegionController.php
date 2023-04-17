@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class RegionController extends Controller
@@ -11,9 +12,10 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $nom = "Atangana";
-        return view("formulaire_region");
         //
+        $regions = Region::all();
+
+        return view('index', compact('regions'));
     }
 
     /**
@@ -31,6 +33,13 @@ class RegionController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'label' => 'required|max:255'
+        ]);
+
+        $region = Region::create($validatedData);
+
+        return redirect('/regions')->with('success', 'Région créer avec succèss');
     }
 
     /**
