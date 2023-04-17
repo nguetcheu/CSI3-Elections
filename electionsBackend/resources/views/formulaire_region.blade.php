@@ -43,8 +43,8 @@
             <form method="post" action="/region_store">
                 . @csrf
                 <div class="form-group">
-                    <label for="marque">Nom de la région:</label>
-                    <input type="text" class="form-control" name="marque" />
+                    <label for="label">Nom de la région:</label>
+                    <input type="text" class="form-control" name="label" />
                 </div>
                 <button type="submit" class="btn btn-primary">Ajouter</button>
             </form>
