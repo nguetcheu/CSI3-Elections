@@ -17,19 +17,38 @@
 </head>
 
 <body>
-    <div class="container" >
-        <form class="row g-3" style="border: 2px solid green; border: radius 5px;" action="/region_store" method="post" >   
-            <div class="col-auto">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Ajout de region</label>
-                        @csrf
-                        <input type="text" class="form-floating mb-3" id="titre" placeholder="Centre">
-                    </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary mb-3">OK</button>
-                    </div>
-            </div>
-        </form>
+
+    <style>
+        .uper {
+            margin-top: 40px;
+        }
+    </style>
+
+    <div class="card uper">
+        <div class="card-header">
+            Ajouter une Région
+        </div>
+
+        <div class="card-body">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div><br />
+            @endif
+
+            <form method="post" action="/region_store">
+                . @csrf
+                <div class="form-group">
+                    <label for="marque">Nom de la région:</label>
+                    <input type="text" class="form-control" name="marque" />
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
     </div>
 </body>
 

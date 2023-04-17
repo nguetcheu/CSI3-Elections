@@ -18,5 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("regions_create",[RegionController::class,"index"]);
-Route::post("/region_store",[RegionController::class,"store"]);
+Route::get("regions_create", [RegionController::class, "index"]);
+Route::post("/region_store", [RegionController::class, "store"]);
+Route::resource('region', 'RegionController');

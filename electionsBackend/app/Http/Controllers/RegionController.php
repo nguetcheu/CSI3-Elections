@@ -11,8 +11,8 @@ class RegionController extends Controller
      */
     public function index()
     {
-       $nom = "Atangana";
-       return view("formulaire_region");
+        $nom = "Atangana";
+        return view("formulaire_region");
         //
     }
 
@@ -22,6 +22,7 @@ class RegionController extends Controller
     public function create()
     {
         //
+        return view("formulaire_region");
     }
 
     /**
