@@ -13,9 +13,9 @@ class RegionController extends Controller
     public function index()
     {
         //
-        $regions = Region::all();
+        $region = Region::all();
 
-        return view('index', compact('regions'));
+        return view('index', compact('region'));
     }
 
     /**
@@ -34,12 +34,12 @@ class RegionController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'label' => 'required|max:255'
+            'label' => 'required|max:10'
         ]);
 
         $region = Region::create($validatedData);
 
-        return redirect('/regions')->with('success', 'Région créer avec succèss');
+        return redirect('region_index')->with('success', 'Région créer avec succèss');
     }
 
     /**
