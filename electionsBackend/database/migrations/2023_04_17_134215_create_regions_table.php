@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('regions', function (Blueprint $table) {
-            $table->id();
-            $table->string('label');
+            $table->increments('id');
+            $table->string('label', 30)->nullable()->default("Nord");
             $table->timestamps();
         });
     }
