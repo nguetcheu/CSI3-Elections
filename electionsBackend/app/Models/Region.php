@@ -1,23 +1,37 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $id;
- * @property string $label;
+ * Class Region
+ * 
+ * @property int $id
+ * @property string|null $label
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * 
+ * @property Collection|Participant[] $participants
+ *
+ * @package App\Models
  */
-
 class Region extends Model
 {
-    use HasFactory;
-    protected $fillable = ['label'];
-    protected $table = 'regions';
+	protected $table = 'regions';
 
-    public function participant()
-    {
-        return $this->hasMany(participant::class, 'id_region');
-    }
+	protected $fillable = [
+		'label'
+	];
+
+	public function participants()
+	{
+		return $this->hasMany(Participant::class, 'id_region');
+	}
 }

@@ -1,11 +1,60 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class participant extends Model
+/**
+ * Class Participant
+ * 
+ * @property int $id
+ * @property string $nom
+ * @property string $num_cni
+ * @property int $age
+ * @property string $sexe
+ * @property string $statut
+ * @property int $id_region
+ * @property string $login
+ * @property string $pwd
+ * @property string|null $email
+ * @property bool $etat
+ * @property string|null $tel
+ * 
+ * @property Region $region
+ *
+ * @package App\Models
+ */
+class Participant extends Model
 {
-    use HasFactory;
+	protected $table = 'participant';
+	public $timestamps = false;
+
+	protected $casts = [
+		'age' => 'int',
+		'id_region' => 'int',
+		'etat' => 'bool'
+	];
+
+	protected $fillable = [
+		'nom',
+		'num_cni',
+		'age',
+		'sexe',
+		'statut',
+		'id_region',
+		'login',
+		'pwd',
+		'email',
+		'etat',
+		'tel'
+	];
+
+	public function region()
+	{
+		return $this->belongsTo(Region::class, 'id_region');
+	}
 }
