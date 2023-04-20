@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $tel
  * 
  * @property Region $region
+ * @property Collection|Vote[] $votes
  *
  * @package App\Models
  */
@@ -56,5 +58,10 @@ class Participant extends Model
 	public function region()
 	{
 		return $this->belongsTo(Region::class, 'id_region');
+	}
+
+	public function votes()
+	{
+		return $this->hasMany(Vote::class, 'id_participant');
 	}
 }

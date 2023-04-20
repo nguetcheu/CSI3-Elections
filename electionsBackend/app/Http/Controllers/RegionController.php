@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegionController extends Controller
 {
@@ -55,15 +56,32 @@ class RegionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $region = Region::find($id);
+            DB::commit();
+            return view('/update_region', compact("region"));
+        } catch (\Throwable $th) {
+            return back();
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id = '')
     {
         //
+        try {
+            DB::beginTransaction();
+            $region = Region::find($id);
+            $region->label = $request->input('label');
+            $region->save();
+            DB::commit();
+            return redirect('/region_index');
+        } catch (\Throwable $th) {
+            return back();
+        }
     }
 
     /**
@@ -71,6 +89,13 @@ class RegionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            Region::find($id)->delete();
+            DB::commit();
+            return view('/region_index')->with('success', 'Region supprimé avec succes');
+        } catch (\Throwable $th) {
+            return back();
+        }
     }
 }
