@@ -17,9 +17,19 @@
 </head>
 
 <body>
-    <h1 class="alert alert-success"> bonjour csi3 </h1>
-    <a href="/regions_create" class="btn btn-outline-primary"> create region </a>
-    <a href="/region_index" class="btn btn-outline-danger"> Lister les regions </a>
+    <h1 class="mt-4 text-center alert alert-success"> Election Laravel CSI3 </h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <a href="/regions_create" class="btn btn-outline-primary"> Créer une région </a>
+                <a href="/region_index" class="btn btn-outline-danger"> Lister les regions </a>
+            </div>
+            <div class="col-6">
+                <a href="/regions_create" class="btn btn-outline-secondary"> Créer un participant </a>
+                <a href="/region_index" class="btn btn-outline-danger"> Lister les participants </a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
