@@ -21,6 +21,7 @@ class ParticipantController extends Controller
     public function create()
     {
         //
+        return view("formulaire_participant");
     }
 
     /**

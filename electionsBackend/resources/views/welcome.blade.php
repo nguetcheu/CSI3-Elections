@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Election</title>
 
 
 
@@ -25,8 +25,8 @@
                 <a href="/region_index" class="btn btn-outline-danger"> Lister les regions </a>
             </div>
             <div class="col-6">
-                <a href="/regions_create" class="btn btn-outline-secondary"> Créer un participant </a>
-                <a href="/region_index" class="btn btn-outline-danger"> Lister les participants </a>
+                <a href="/participant_create" class="btn btn-outline-secondary"> Créer un participant </a>
+                <a href="/participant_index" class="btn btn-outline-danger"> Lister les participants </a>
             </div>
         </div>
     </div>
