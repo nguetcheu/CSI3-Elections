@@ -22,47 +22,58 @@
   }
 </style>
 
-<div class="uper">
+<body>
 
-  @if(session()->get('success'))
-  <div class="alert alert-success">
-    {{ session()->get('success') }}
-  </div><br />
-  @endif
+  <h1> Liste des participants</h1>
 
-  <table class="table table-striped">
+  <div class="uper">
 
-    <thead>
-      <tr>
-        <td>ID</td>
-        <td>nom</td>
-        <td>num_cni</td>
-        <td>age</td>
-        <td>sexe</td>
-        <td>id_region</td>
-        <td>login</td>
-        <td>password</td>
-        <td>email</td>
-        <td>etat</td>
-        <td>télephone</td>
-      </tr>
-    </thead>
+    @if(session()->get('success'))
+    <div class="alert alert-success">
+      {{ session()->get('success') }}
+    </div><br />
+    @endif
 
-    <tbody>
-      @foreach($participants as $participant)
-      <tr>
-        <td>{{$participant->id}}</td>
-        <td>{{$participant->nom}}</td>
-        <td>{{$participant->created_at}}</td>
-        <td>
-          @method('DELETE')
-          <a href="/region_delete/{{$region->id}}" class="btn btn-outline-danger">Supprimer</a>
+    <table class="table table-striped">
 
-          <a href="/form_update_region/{{$region ->id}}" class="btn btn-outline-primary">Editer</a>
-        </td>
-      </tr>
-      @endforeach
-    </tbody>
-    <a href="/" class="btn btn-outline-primary"> Accueil </a>
-  </table>
-  <div>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>nom</td>
+          <td>num_cni</td>
+          <td>age</td>
+          <td>sexe</td>
+          <td>id_region</td>
+          <td>login</td>
+          <td>password</td>
+          <td>email</td>
+          <td>télephone</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        @foreach($participants as $participant)
+        <tr>
+          <td>{{$participant->id}}</td>
+          <td>{{$participant->nom}}</td>
+          <td>{{$participant->num_cni}}</td>
+          <td>{{$participant->age}}</td>
+          <td>{{$participant->sexe}}</td>
+          <td>{{$participant->id_region}}</td>
+          <td>{{$participant->login}}</td>
+          <td>{{$participant->pwd}}</td>
+          <td>{{$participant->email}}</td>
+          <td>{{$participant->tel}}</td>
+          <td>
+            @method('DELETE')
+            <a href="/participant_delete/{{$participant->id}}" class="btn btn-outline-danger">Supprimer</a>
+
+            <a href="/form_update_participant/{{$participant ->id}}" class="btn btn-outline-primary">Editer</a>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+      <a href="/" class="btn btn-outline-primary"> Accueil </a>
+    </table>
+    <div>
+</body>

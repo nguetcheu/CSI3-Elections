@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\participant;
 use App\Models\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use function Ramsey\Uuid\v1;
 
@@ -16,9 +17,9 @@ class ParticipantController extends Controller
     public function index()
     {
         //
-        $participant = participant::all();
+        $participants = participant::all();
 
-        return view('liste_participant', compact('participant'));
+        return view('liste_participant', compact('participants'));
     }
 
     /**
@@ -70,6 +71,14 @@ class ParticipantController extends Controller
     public function edit(participant $participant)
     {
         //
+        try {
+            DB::beginTransaction();
+            $participant = participant::find($id);
+            DB::commit();
+            return view('/update_participant', compact("particpants"));
+        } catch (\Throwable $th) {
+            return back();
+        }
     }
 
     /**
@@ -78,6 +87,16 @@ class ParticipantController extends Controller
     public function update(Request $request, participant $participant)
     {
         //
+        try {
+            DB::beginTransaction();
+            $participant = participant::find($id);
+            $participant->label = $request->input('label');
+            $participant->save();
+            DB::commit();
+            return redirect('/lister_participant');
+        } catch (\Throwable $th) {
+            return back();
+        }
     }
 
     /**
@@ -86,5 +105,13 @@ class ParticipantController extends Controller
     public function destroy(participant $participant)
     {
         //
+        try {
+            DB::beginTransaction();
+            $participant = participant::find($id);
+            DB::commit();
+            return view('/lister_participant')->with('success', 'Participant supprimé avec succes');
+        } catch (\Throwable $th) {
+            return back();
+        }
     }
 }
