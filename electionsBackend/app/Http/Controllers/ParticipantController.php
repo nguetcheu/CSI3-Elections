@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\participant;
+use App\Models\Region;
 use Illuminate\Http\Request;
+
+use function Ramsey\Uuid\v1;
 
 class ParticipantController extends Controller
 {
@@ -13,6 +16,9 @@ class ParticipantController extends Controller
     public function index()
     {
         //
+        $participant = participant::all();
+
+        return view('liste_participant', compact('participant'));
     }
 
     /**
@@ -21,7 +27,8 @@ class ParticipantController extends Controller
     public function create()
     {
         //
-        return view("formulaire_participant");
+        $regions = Region::all();
+        return view('formulaire_participant', compact('regions'));
     }
 
     /**
@@ -30,6 +37,23 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'nom' => 'required|max:20',
+            'num_cni' => 'required|max:20',
+            'age' => 'required|max:20',
+            'sexe' => 'required|max:5',
+            'statut' => 'required|max:2',
+            'id_region' => 'required|max:2',
+            'login' => 'required|max:20',
+            'pwd' => 'required|max:20',
+            'email' => 'required|max:20',
+            'etat' => 'required|max:2',
+            'tel' => 'required|max:20',
+        ]);
+
+        $participant = participant::create($validatedData);
+
+        return redirect('liste_participant')->with('success', 'Participant crée avec succèss');
     }
 
     /**

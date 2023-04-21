@@ -35,12 +35,12 @@ class RegionController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'label' => 'required|max:10'
+            'label' => 'required|max:20'
         ]);
 
         $region = Region::create($validatedData);
 
-        return redirect('region_index')->with('success', 'Région créer avec succèss');
+        return redirect('region_index')->with('success', 'Région crée avec succèss');
     }
 
     /**

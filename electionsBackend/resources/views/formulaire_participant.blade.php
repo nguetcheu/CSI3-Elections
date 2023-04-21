@@ -36,15 +36,15 @@
       <div class="container">
         <div class="row">
           <div class="col-6">
-            <form method="post" action="/region_store">
+            <form method="post" action="/participant_store">
               @csrf
               <div class="form-group">
                 <label for="nom">Nom:</label>
                 <input type="text" class="form-control" name="nom" />
               </div>
 
-              <label for="cni">Num_cni:</label>
-              <input type="text" class="form-control" name="cni" />
+              <label for="num_cni">Num_cni:</label>
+              <input type="text" class="form-control" name="num_cni" />
 
               <label for="age">Age:</label>
               <input type="number" class="form-control" name="age" />
@@ -58,16 +58,16 @@
               </div>
 
               <div class="form-group">
-                <label for="sexe">Choisir le Statut </label>
-                <select class="form-control" id="sexe" name="sexe">
+                <label for="statut">Choisir le Statut </label>
+                <select class="form-control" id="statut" name="statut">
                   <option>C</option>
                   <option>E</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label for="role_id">Region ID:</label>
-                <select name="region_id" class="form-control">
+                <label for="id_region">Region ID:</label>
+                <select name="id_region" class="form-control">
                   @foreach(App\Models\Region::pluck('id') as $regionId)
                   <option value="{{ $regionId }}">{{ $regionId }}</option>
                   @endforeach
@@ -84,21 +84,38 @@
               <input type="text" class="form-control" name="email" />
 
               <div class="form-group">
-                <label for="sexe">Choisir l' etat </label>
-                <select class="form-control" id="sexe" name="sexe">
+                <label for="etat">Choisir l'etat </label>
+                <select class="form-control" id="sexe" name="etat">
                   <option>0</option>
                   <option>1</option>
                 </select>
               </div>
 
               <label for="tel">Télephone:</label>
-              <input type="number" class="form-control" name="tel" />
+              <input type="text" class="form-control" name="tel" />
 
               <button type="submit" class="btn btn-primary">Ajouter</button>
             </form><br>
           </div>
           <div class=" m-4 col-4">
-            <h3 class="text-center">Veuillez remplir ce formulaire</h3>
+            <h3 class="text-center">Veuillez remplir le formulaire</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td>ID</td>
+                  <td>Label</td>
+                </tr>
+              </thead>
+
+              <tbody>
+                @foreach($regions as $region)
+                <tr>
+                  <td>{{$region->id}}</td>
+                  <td>{{$region->label}}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
           </div>
           <a href="/" class="btn btn-outline-danger"> Retourner a l'accueil </a>
         </div>
