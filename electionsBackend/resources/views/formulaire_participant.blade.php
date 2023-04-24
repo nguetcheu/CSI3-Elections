@@ -58,14 +58,6 @@
               </div>
 
               <div class="form-group">
-                <label for="statut">Choisir le Statut </label>
-                <select class="form-control" id="statut" name="statut">
-                  <option>C</option>
-                  <option>E</option>
-                </select>
-              </div>
-
-              <div class="form-group">
                 <label for="id_region">Region ID:</label>
                 <select name="id_region" class="form-control">
                   @foreach(App\Models\Region::pluck('id') as $regionId)
@@ -78,18 +70,10 @@
               <input type="text" class="form-control" name="login" />
 
               <label for="pwd">Mot de passe:</label>
-              <input type="text" class="form-control" name="pwd" />
+              <input type="password" class="form-control" name="pwd" />
 
               <label for="email">Email:</label>
               <input type="text" class="form-control" name="email" />
-
-              <div class="form-group">
-                <label for="etat">Choisir l'etat </label>
-                <select class="form-control" id="sexe" name="etat">
-                  <option>0</option>
-                  <option>1</option>
-                </select>
-              </div>
 
               <label for="tel">Télephone:</label>
               <input type="text" class="form-control" name="tel" />

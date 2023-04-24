@@ -52,7 +52,7 @@
       </thead>
 
       <tbody>
-        @foreach($participants as $participant)
+        @foreach($participant as $participant)
         <tr>
           <td>{{$participant->id}}</td>
           <td>{{$participant->nom}}</td>

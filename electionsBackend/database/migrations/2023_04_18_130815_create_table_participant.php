@@ -17,12 +17,10 @@ return new class extends Migration
             $table->string('num_cni', 100);
             $table->integer('age');
             $table->char('sexe', 1)->default('M');
-            $table->string('statut', 30)->default('E');
             $table->unsignedInteger('id_region');
             $table->string('login', 30);
             $table->string('pwd', 100);
             $table->string('email', 30)->nullable();
-            $table->boolean('etat', 1)->default(false);
             $table->string('tel', 15)->nullable();
             $table->foreign(('id_region'))->references('id')->on('regions')->onDelete('cascade');
         });

@@ -7,7 +7,6 @@ use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use function Ramsey\Uuid\v1;
 
 class ParticipantController extends Controller
 {
@@ -17,9 +16,9 @@ class ParticipantController extends Controller
     public function index()
     {
         //
-        $participants = participant::all();
+        $participant = participant::all();
 
-        return view('liste_participant', compact('participants'));
+        return view('liste_participant', compact('participant'));
     }
 
     /**
@@ -43,12 +42,10 @@ class ParticipantController extends Controller
             'num_cni' => 'required|max:20',
             'age' => 'required|max:20',
             'sexe' => 'required|max:5',
-            'statut' => 'required|max:2',
             'id_region' => 'required|max:2',
             'login' => 'required|max:20',
             'pwd' => 'required|max:20',
             'email' => 'required|max:20',
-            'etat' => 'required|max:2',
             'tel' => 'required|max:20',
         ]);
 
@@ -68,14 +65,14 @@ class ParticipantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(participant $participant)
+    public function edit(string $id)
     {
         //
         try {
             DB::beginTransaction();
             $participant = participant::find($id);
             DB::commit();
-            return view('/update_participant', compact("particpants"));
+            return view('/update_participant', compact("participant"));
         } catch (\Throwable $th) {
             return back();
         }
@@ -84,16 +81,25 @@ class ParticipantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, participant $participant)
+    public function update(Request $request, string $id = '')
     {
         //
         try {
             DB::beginTransaction();
             $participant = participant::find($id);
-            $participant->label = $request->input('label');
+            $participant->nom = $request->input('nom');
+            $participant->age = $request->input('age');
+            $participant->num_cni = $request->input('num_cni');
+            $participant->age = $request->input('age');
+            $participant->sexe = $request->input('sexe');
+            $participant->id_region = $request->input('id_region');
+            $participant->login = $request->input('login');
+            $participant->pwd = $request->input('pwd');
+            $participant->email = $request->input('email');
+            $participant->tel = $request->input('tel');
             $participant->save();
             DB::commit();
-            return redirect('/lister_participant');
+            return redirect('/liste_participant');
         } catch (\Throwable $th) {
             return back();
         }
@@ -102,14 +108,14 @@ class ParticipantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(participant $participant)
+    public function destroy(string $id)
     {
         //
         try {
             DB::beginTransaction();
-            $participant = participant::find($id);
+            participant::find($id)->delete();
             DB::commit();
-            return view('/lister_participant')->with('success', 'Participant supprimé avec succes');
+            return view('/liste_participant')->with('success', 'Participant supprimé avec succes');
         } catch (\Throwable $th) {
             return back();
         }

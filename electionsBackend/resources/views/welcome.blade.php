@@ -26,7 +26,7 @@
             </div>
             <div class="col-6">
                 <a href="/participant_create" class="btn btn-outline-secondary"> Créer un participant </a>
-                <a href="/participant_index" class="btn btn-outline-danger"> Lister les participants </a>
+                <a href="/liste_participant" class="btn btn-outline-danger"> Lister les participants </a>
             </div>
         </div>
     </div>

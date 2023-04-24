@@ -15,4 +15,8 @@ export class AppComponent {
     }
     return n * this.fact(n - 1);
   }
+
+  reset() {
+    this.n++;
+  }
 }

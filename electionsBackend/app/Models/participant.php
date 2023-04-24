@@ -46,12 +46,10 @@ class Participant extends Model
 		'num_cni',
 		'age',
 		'sexe',
-		'statut',
 		'id_region',
 		'login',
 		'pwd',
 		'email',
-		'etat',
 		'tel'
 	];
 

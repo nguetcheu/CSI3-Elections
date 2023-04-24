@@ -32,13 +32,13 @@ Route::put('/region/{id}', [RegionController::class, "update"]);
 
 Route::get("/region_delete/{id}", [RegionController::class, "destroy"]);
 Route::get("/form_update_region/{id}", [RegionController::class, "edit"]);
-Route::resource('region', 'RegionController');
+//Route::resource('region', 'RegionController');
 
 /*
     Gestion des routes pour la gestion des participants
 */
 
-Route::get("/participant_index", [ParticipantController::class, "index"]);
+Route::get("/liste_participant", [ParticipantController::class, "index"]);
 Route::get("participant_create", [ParticipantController::class, "create"]);
 
 Route::post("/participant_store", [ParticipantController::class, "store"]);
@@ -47,4 +47,5 @@ Route::put('/participant/{id}', [ParticipantController::class, "update"]);
 
 Route::get("/participant_delete/{id}", [ParticipantController::class, "destroy"]);
 Route::get("/form_update_participant/{id}", [ParticipantController::class, "edit"]);
-Route::resource('participant', 'ParticipantController');
+//Route::resource('participant', 'ParticipantController');
+

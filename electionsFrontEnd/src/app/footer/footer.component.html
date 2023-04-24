@@ -1,1 +1,8 @@
 <p>footer works!</p>
+<h1 class="alert alert-primary">{{ region.label }} -- {{ region.id }}</h1>
+<input
+  type="text"
+  name="{{ region.label }}"
+  (change)="maj()"
+  [(ngModel)]="region.label"
+/>
