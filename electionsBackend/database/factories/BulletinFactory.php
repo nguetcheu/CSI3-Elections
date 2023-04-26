@@ -19,7 +19,7 @@ class BulletinFactory extends Factory
         return [
             //
             'couleur' => $this->faker->colorName(),
-            'photo' => $this->faker->imageUrl(),
+            'photo' => $this->faker->imageUrl($width = 640, $height = 480),
         ];
     }
 }

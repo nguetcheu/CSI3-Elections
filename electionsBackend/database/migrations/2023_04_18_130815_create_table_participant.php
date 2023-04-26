@@ -20,10 +20,10 @@ return new class extends Migration
             $table->unsignedInteger('id_region');
             $table->string('login', 30);
             $table->string('pwd', 100);
-            $table->string('email', 30)->nullable();
+            $table->string('email', 40)->nullable();
             $table->string('statut')->default('C');
             $table->boolean('etat')->default(true);
-            $table->string('tel', 15)->nullable();
+            $table->string('tel', 20)->nullable();
             $table->foreign(('id_region'))->references('id')->on('regions')->onDelete('cascade');
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bulletin', function (Blueprint $table) {
             $table->increments('id');
             $table->string('couleur',100);
-            $table->binary('photo');
+            $table->string('photo');
         });
     }
 
