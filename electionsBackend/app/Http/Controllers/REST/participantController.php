@@ -88,6 +88,21 @@ class participantController extends Controller
         }
     }
 
+    public function onoff($id)
+    {
+        try {
+            DB::beginTransaction();
+            $participant = participant::find($id);
+            $participant->etat = !($participant->etat);
+            $participant->update();
+            DB::commit();
+            return response()->json("{'Activation du participant réussie'}", 200);
+        } catch (Throwable $error) {
+            dd($error);
+            return response()->json("{'Participant non activé'}", 404);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */

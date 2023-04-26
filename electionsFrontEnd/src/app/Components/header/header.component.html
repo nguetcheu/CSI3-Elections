@@ -13,11 +13,4 @@
   </ul>
 </nav>
 
-<ul *ngFor="let r of regions">
-  {{
-    r.id
-  }}--{{
-    r.label
-  }}
-</ul>
-<app-footer [region]="regions[3]" (emetteur)="ecouteurEnfant($event)"></app-footer>
+

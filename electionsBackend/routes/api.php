@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// désactivation d'un participant
+Route::get('onoff/{id}', [ParticipantController::class, "onoff"]);
+
+Route::apiResource("participant", participantController::class);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::apiResource("participant", participantController::class);

@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <app-header></app-header>
-    <h1>Je suis dans le composant {{ title }} et ma valeur est {{ n }}</h1>
-    <h2>Le factoriel de {{ n }} est {{ fact(n) }}</h2>
-    <input type="number" [value]="n" />
-    <input type="button" value="valider" (click)="reset()" /><br />
-
-    <h1>Application de two way Binding {{ n }}</h1>
-
-    <input type="text" [(ngModel)]="n" />
-  </body>
-  <app-main></app-main>
-</html>
+<app-header></app-header>
+<a class="btn btn-primary" routerLink="/region_formulaire">Création de Région</a>
 <router-outlet></router-outlet>

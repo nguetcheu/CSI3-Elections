@@ -47,5 +47,5 @@ Route::put('/participant/{id}', [ParticipantController::class, "update"]);
 
 Route::get("/participant_delete/{id}", [ParticipantController::class, "destroy"]);
 Route::get("/form_update_participant/{id}", [ParticipantController::class, "edit"]);
-//Route::resource('participant', 'ParticipantController');
 
+//Route::resource('participant', 'ParticipantController');

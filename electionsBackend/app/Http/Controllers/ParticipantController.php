@@ -96,6 +96,7 @@ class ParticipantController extends Controller
             $participant->login = $request->input('login');
             $participant->pwd = $request->input('pwd');
             $participant->email = $request->input('email');
+            $participant->etat = $request->input('etat');
             $participant->tel = $request->input('tel');
             $participant->save();
             DB::commit();
