@@ -5,6 +5,8 @@ namespace App\Http\Controllers\REST;
 use App\Http\Controllers\Controller;
 use App\Models\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class RegionController extends Controller
 {
@@ -14,6 +16,8 @@ class RegionController extends Controller
     public function index()
     {
         //
+        $region = Region::all();
+        return response()->json($region, 200);
     }
 
     /**
@@ -22,6 +26,21 @@ class RegionController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'label' => 'required|max:30',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $region = Region::create([
+                'label' => $request->label,
+            ]);
+            DB::commit();
+            return response()->json($region, 201);
+        } catch (\Throwable $th) {
+            dd($th);
+            return response()->json("{'error: Imposible de sauvegarder une région'}", 404);
+        }
     }
 
     /**
@@ -35,16 +54,33 @@ class RegionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Region $region)
+    public function update(Request $request, $id)
     {
         //
+        try {
+            $region = Region::find($id);
+            $region->update($request->all());
+            response()->json("{'Modification réussie de la région'}", 200);
+            return $region;
+        } catch (Throwable $error) {
+            dd($error);
+            return response()->json("{'error: Imposible de mettre a jour la région'}", 404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Region $region)
+    public function destroy($id)
     {
         //
+        try {
+            $region = Region::find($id);
+            $region->delete();
+            return response()->json("{'Suppresion réussie de la région'}", 200);
+        } catch (Throwable $error) {
+            dd($error);
+            return response()->json("{'error: Imposible de supprimé la région'}", 404);
+        }
     }
 }

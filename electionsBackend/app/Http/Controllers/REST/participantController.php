@@ -115,7 +115,7 @@ class participantController extends Controller
             return response()->json("{'Suppresion réussie du participant'}", 200);
         } catch (Throwable $error) {
             dd($error);
-            return response()->json("{'error: Imposible de Supprimé'}", 404);
+            return response()->json("{'error: Imposible de supprimé le participant'}", 404);
         }
     }
 }

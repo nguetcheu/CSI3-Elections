@@ -19,7 +19,7 @@ class RegionFactory extends Factory
     {
         return [
             //
-            "label" => Str::upper(str::random(10))
+            "label" =>  $this->faker->state(),
         ];
     }
 }
