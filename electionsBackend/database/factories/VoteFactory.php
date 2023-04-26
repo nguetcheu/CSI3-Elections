@@ -19,7 +19,10 @@ class VoteFactory extends Factory
     {
         return [
             //
-            
+            'date' => $this->faker->date($format = 'Y-m-d'),
+            'id_election' => rand(1, 20),
+            'id_bulletin' => rand(1, 20),
+            'id_participant' => rand(1, 20),
         ];
     }
 }

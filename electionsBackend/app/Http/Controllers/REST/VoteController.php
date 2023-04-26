@@ -26,7 +26,30 @@ class VoteController extends Controller
     public function store(Request $request)
     {
         //
-        
+        $this->validate(
+            $request,
+            [
+                'date' => 'required',
+                'id_election' => 'required|max:100',
+                'id_bulletin' => 'required|max:5',
+                'id_participant' => 'required|max:2',
+            ]
+        );
+
+        try {
+            DB::beginTransaction();
+            $vote = vote::create([
+                'date' => $request->date,
+                'id_election' => $request->id_election,
+                'id_bulletin' => $request->id_bulletin,
+                'id_participant' => $request->id_participant,
+            ]);
+            DB::commit();
+            return response()->json($vote, 201);
+        } catch (\Throwable $th) {
+            dd($th);
+            return response()->json("{'error: Imposible de sauvegarder le vote'}", 404);
+        }
     }
 
     /**
@@ -40,16 +63,33 @@ class VoteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, vote $vote)
+    public function update(Request $request, $id)
     {
         //
+        try {
+            $vote = vote::find($id);
+            $vote->update($request->all());
+            response()->json("{'Modification réussie du vote'}", 200);
+            return $vote;
+        } catch (Throwable $error) {
+            dd($error);
+            return response()->json("{'error: Imposible de mettre a jour le vote'}", 404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(vote $vote)
+    public function destroy($id)
     {
         //
+        try {
+            $vote = vote::find($id);
+            $vote->delete();
+            return response()->json("{'Suppresion réussie du vote'}", 200);
+        } catch (Throwable $error) {
+            dd($error);
+            return response()->json("{'error: Imposible de supprimé le vote'}", 404);
+        }
     }
 }

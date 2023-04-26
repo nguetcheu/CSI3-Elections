@@ -6,6 +6,7 @@ use App\Models\Bulletin;
 use App\Models\Election;
 use App\Models\Participant;
 use App\Models\Region;
+use App\Models\vote;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
         Participant::factory(20)->create();
         Bulletin::factory(20)->create();
         Election::factory(20)->create();
+        vote::factory(20)->create();
     }
 }
