@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('election', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('date',50);
+            $table->date('date',50);
             $table->string('statut')->default('ouvert');
             $table->string('label',100);
             $table->string('description',300);
