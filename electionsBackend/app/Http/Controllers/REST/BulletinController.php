@@ -5,6 +5,8 @@ namespace App\Http\Controllers\REST;
 use App\Http\Controllers\Controller;
 use App\Models\Bulletin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class BulletinController extends Controller
 {
@@ -14,6 +16,8 @@ class BulletinController extends Controller
     public function index()
     {
         //
+        $bulletin = Bulletin::all();
+        return response()->json($bulletin, 200);
     }
 
     /**
@@ -22,6 +26,22 @@ class BulletinController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'label' => 'required|max:30',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $bulletin = Bulletin::create([
+                'couleur' => $request->label,
+                'photo' => $request->label,
+            ]);
+            DB::commit();
+            return response()->json($bulletin, 201);
+        } catch (\Throwable $th) {
+            dd($th);
+            return response()->json("{'error: Imposible de sauvegarder une bulletin'}", 404);
+        }
     }
 
     /**
