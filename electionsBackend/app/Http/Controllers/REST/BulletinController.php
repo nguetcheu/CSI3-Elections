@@ -27,14 +27,15 @@ class BulletinController extends Controller
     {
         //
         $this->validate($request, [
-            'label' => 'required|max:30',
+            'couleur' => 'required|max:100',
+            'photo' => 'required|max:100',
         ]);
 
         try {
             DB::beginTransaction();
             $bulletin = Bulletin::create([
-                'couleur' => $request->label,
-                'photo' => $request->label,
+                'couleur' => $request->couleur,
+                'photo' => $request->photo,
             ]);
             DB::commit();
             return response()->json($bulletin, 201);
@@ -55,16 +56,33 @@ class BulletinController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bulletin $bulletin)
+    public function update(Request $request, $id)
     {
         //
+        try {
+            $bulletin = Bulletin::find($id);
+            $bulletin->update($request->all());
+            response()->json("{'Modification réussie du bulletin'}", 200);
+            return $bulletin;
+        } catch (Throwable $error) {
+            dd($error);
+            return response()->json("{'error: Imposible de mettre a jour le bulletin'}", 404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bulletin $bulletin)
+    public function destroy($id)
     {
         //
+        try {
+            $bulletin = Bulletin::find($id);
+            $bulletin->delete();
+            return response()->json("{'Suppresion réussie du bulletin'}", 200);
+        } catch (Throwable $error) {
+            dd($error);
+            return response()->json("{'error: Imposible de supprimé le bulletin'}", 404);
+        }
     }
 }
