@@ -5,6 +5,8 @@ namespace App\Http\Controllers\REST;
 use App\Http\Controllers\Controller;
 use App\Models\vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class VoteController extends Controller
 {
@@ -14,6 +16,8 @@ class VoteController extends Controller
     public function index()
     {
         //
+        $vote = Vote::all();
+        return response()->json($vote, 200);
     }
 
     /**
@@ -22,6 +26,7 @@ class VoteController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**
