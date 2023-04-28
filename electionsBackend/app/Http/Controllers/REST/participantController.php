@@ -58,7 +58,6 @@ class participantController extends Controller
             DB::commit();
             return response()->json($participant, 201);
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json("{'error: Imposible de sauvegarder'}", 404);
         }
     }
@@ -83,7 +82,6 @@ class participantController extends Controller
             response()->json("{'Modification réussie du participant'}", 200);
             return $participant;
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de mettre a jour le participant'}", 404);
         }
     }
@@ -98,7 +96,6 @@ class participantController extends Controller
             DB::commit();
             return response()->json("{'Activation du participant réussie'}", 200);
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'Participant non activé'}", 404);
         }
     }
@@ -114,7 +111,6 @@ class participantController extends Controller
             $participant->delete();
             return response()->json("{'Suppresion réussie du participant'}", 200);
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de supprimé le participant'}", 404);
         }
     }

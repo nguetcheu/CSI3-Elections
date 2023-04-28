@@ -45,7 +45,6 @@ class ElectionController extends Controller
             DB::commit();
             return response()->json($election, 201);
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json("{'error: Imposible de sauvegarder une élection'}", 404);
         }
     }
@@ -70,7 +69,6 @@ class ElectionController extends Controller
             response()->json("{'Modification réussie de l'élection'}", 200);
             return $election;
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de mettre a jour l'élection'}", 404);
         }
     }
@@ -86,7 +84,6 @@ class ElectionController extends Controller
             $election->delete();
             return response()->json("{'Suppresion réussie de l'élection'}", 200);
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de supprimé l'élection'}", 404);
         }
     }

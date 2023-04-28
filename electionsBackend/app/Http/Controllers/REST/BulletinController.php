@@ -40,7 +40,6 @@ class BulletinController extends Controller
             DB::commit();
             return response()->json($bulletin, 201);
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json("{'error: Imposible de sauvegarder une bulletin'}", 404);
         }
     }
@@ -65,7 +64,6 @@ class BulletinController extends Controller
             response()->json("{'Modification réussie du bulletin'}", 200);
             return $bulletin;
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de mettre a jour le bulletin'}", 404);
         }
     }
@@ -81,7 +79,6 @@ class BulletinController extends Controller
             $bulletin->delete();
             return response()->json("{'Suppresion réussie du bulletin'}", 200);
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de supprimé le bulletin'}", 404);
         }
     }

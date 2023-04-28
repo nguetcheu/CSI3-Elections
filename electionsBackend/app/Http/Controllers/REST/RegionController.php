@@ -62,7 +62,6 @@ class RegionController extends Controller
             response()->json("{'Modification réussie de la région'}", 200);
             return $region;
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de mettre a jour la région'}", 404);
         }
     }
@@ -78,7 +77,6 @@ class RegionController extends Controller
             $region->delete();
             return response()->json("{'Suppresion réussie de la région'}", 200);
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de supprimé la région'}", 404);
         }
     }

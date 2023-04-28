@@ -4,5 +4,5 @@ export class Region {
   public created_at!: Date;
   public updated_at!: Date;
 
-  public constructor() {}
+  public constructor(...args: any[]) {}
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Region } from 'src/app/models/Region.model';
 import { RegionService } from 'src/app/services/region.service';
 
@@ -12,8 +13,13 @@ export class RegionComponent implements OnInit {
   public formRegion!: FormGroup;
   public erreur!: string;
   regions: Region[] = [];
+  region!: Region;
 
-  constructor(public fb: FormBuilder, private regionService: RegionService) {}
+  constructor(
+    public fb: FormBuilder,
+    private regionService: RegionService,
+    private router: Router
+  ) {}
 
   private chargementRegion() {
     this.regionService.loadRegion().subscribe(
@@ -50,6 +56,10 @@ export class RegionComponent implements OnInit {
         this.erreur = "Erreur lors de l'insertion de la région.";
       }
     );
+  }
+
+  gotoEditRegion(region: Region) {
+    this.router.navigate(['/regions', region.id]);
   }
 
   deleteRegion(id: number) {

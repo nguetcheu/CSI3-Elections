@@ -9,6 +9,7 @@ import { HeaderComponent } from './Components/header/header.component';
 import { MainComponent } from './Components/main/main.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { RegionComponent } from './Components/region/region.component';
+import { EditRegionComponent } from './Components/edit-region/edit-region.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RegionComponent } from './Components/region/region.component';
     MainComponent,
     FooterComponent,
     RegionComponent,
+    EditRegionComponent,
   ],
   imports: [
     BrowserModule,

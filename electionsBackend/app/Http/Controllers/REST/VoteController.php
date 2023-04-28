@@ -47,7 +47,6 @@ class VoteController extends Controller
             DB::commit();
             return response()->json($vote, 201);
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json("{'error: Imposible de sauvegarder le vote'}", 404);
         }
     }
@@ -72,7 +71,6 @@ class VoteController extends Controller
             response()->json("{'Modification réussie du vote'}", 200);
             return $vote;
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de mettre a jour le vote'}", 404);
         }
     }
@@ -88,7 +86,6 @@ class VoteController extends Controller
             $vote->delete();
             return response()->json("{'Suppresion réussie du vote'}", 200);
         } catch (Throwable $error) {
-            dd($error);
             return response()->json("{'error: Imposible de supprimé le vote'}", 404);
         }
     }

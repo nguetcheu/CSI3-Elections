@@ -21,13 +21,19 @@ export class RegionService {
     return this.http.get<Region[]>(this.CREATE_REGION);
   }
 
+  // Création d'un observable qui va émettre une région
+  updateRegion(region: Region): Observable<Region> {
+    const url = `${this.CREATE_REGION}/${region.id}`;
+    return this.http.put<Region>(url, region);
+  }
+
   // Création d'un observable qui va émettre une région qui sera souscris dans le composant region
   getRegionById(id: number): Observable<Region> {
-    return this.http.get<Region>(`http://localhost:8000/api/region/${id}`);
+    return this.http.get<Region>(`${this.CREATE_REGION}/${id}`);
   }
 
   deleteRegion(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`http://localhost:8000/api/region/${id}`);
+    return this.http.delete<boolean>(`${this.CREATE_REGION}/${id}`);
   }
   
 }

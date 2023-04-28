@@ -1,0 +1,19 @@
+<div *ngIf="region" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ region.label }}</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="regionForm">
+      <div class="form-group">
+        <label for="label">Label:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="label"
+          formControlName="label"
+          [(ngModel)]="region.label"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+  </div>
+</div>
+<h4 *ngIf="!region" class="center">Aucune région à afficher !</h4>
