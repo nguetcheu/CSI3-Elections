@@ -15,12 +15,7 @@ export class RegionComponent implements OnInit {
 
   constructor(public fb: FormBuilder, private regionService: RegionService) {}
 
-  ngOnInit(): void {
-    this.formRegion = this.fb.group({
-      label: ['', Validators.required],
-    });
-
-    // récupration de l'observable (un tableau de région) émis par le service
+  private chargementRegion() {
     this.regionService.loadRegion().subscribe(
       (data: Region[]) => {
         this.regions = data;
@@ -31,6 +26,15 @@ export class RegionComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {
+    this.formRegion = this.fb.group({
+      label: ['', Validators.required],
+    });
+
+    // récupration de l'observable (un tableau de région) émis par le service
+    this.chargementRegion();
+  }
+
   onSubmit() {
     const r = new Region();
     r.label = this.formRegion.value.label;
@@ -39,18 +43,25 @@ export class RegionComponent implements OnInit {
         console.log(data);
         this.formRegion.reset();
         // recharger la liste des régions après insertion réussie
-        this.regionService.loadRegion().subscribe(
-          (regions: Region[]) => {
-            this.regions = regions;
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+        this.chargementRegion();
       },
       (error) => {
         console.log(error);
         this.erreur = "Erreur lors de l'insertion de la région.";
+      }
+    );
+  }
+
+  deleteRegion(id: number) {
+    this.regionService.deleteRegion(id).subscribe(
+      (data) => {
+        console.log(data);
+        // Supprimer la région de la liste
+        this.regions = this.regions.filter((r) => r.id !== id);
+      },
+      (error) => {
+        console.log(error);
+        this.erreur = 'Erreur lors de la suppression de la région.';
       }
     );
   }

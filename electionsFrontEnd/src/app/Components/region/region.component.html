@@ -56,14 +56,21 @@
           <tr>
             <td>ID</td>
             <td>Label</td>
-            <td>Date de création de la région</td>
+            <td>Actions</td>
           </tr>
         </thead>
         <tbody *ngIf="regions">
           <tr *ngFor="let region of regions">
             <td>{{ region.id }}</td>
             <td>{{ region.label }}</td>
-            <td>{{ region.created_at }}</td>
+            <td>
+              <button (click)="editRegion(region.id)" class="btn btn-primary">
+                Modifier
+              </button>
+              <button (click)="deleteRegion(region.id)" class="btn btn-danger">
+                Supprimer
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
