@@ -9,23 +9,14 @@ import { Observable } from 'rxjs';
 export class RegionService {
   CREATE_REGION: string = 'http://localhost:8000/api/region';
 
-  constructor(public client: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
-  save(region: Region): any {
-    const requete = this.client.post<any>(`${this.CREATE_REGION}`, region);
-    requete.subscribe(
-      (data) => {
-        console.log(data);
-        return data;
-      },
-      (error) => {
-        return null;
-      }
-    );
+  insertRegion(region: Region): Observable<Region> {
+    return this.http.post<Region>(this.CREATE_REGION, region);
   }
 
-  // Création d'un observable qui va émettre un tableau de région qui sera 
+  // Création d'un observable qui va émettre un tableau de région qui sera
   loadRegion(): Observable<Region[]> {
-    return this.client.get<Region[]>('http://localhost:8000/api/region');
+    return this.http.get<Region[]>('http://localhost:8000/api/region');
   }
 }

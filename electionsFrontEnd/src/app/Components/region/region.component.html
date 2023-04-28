@@ -28,16 +28,27 @@
     </style>
 
     <div class="card uper">
-      <div class="card-header">Ajouter une Région</div>
-
+      <div class="card-header">Ajouter une région</div>
       <div class="card-body">
-        <div class="alert alert-danger">
-          <ul>
-            <li>{{ erreur }}</li>
-          </ul>
-          <p>{{ success }}</p>
-        </div>
-        <br />
+        <form [formGroup]="formRegion" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="label">Label:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="label"
+              formControlName="label"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!formRegion.valid"
+          >
+            Enregistrer
+          </button>
+        </form>
+        <p class="text-danger">{{ erreur }}</p>
       </div>
 
       <table class="table table-striped">

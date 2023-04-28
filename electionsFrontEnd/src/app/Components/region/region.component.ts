@@ -9,18 +9,14 @@ import { RegionService } from 'src/app/services/region.service';
   styleUrls: ['./region.component.css'],
 })
 export class RegionComponent implements OnInit {
-  public formR!: FormGroup;
+  public formRegion!: FormGroup;
   public erreur!: string;
-  public success!: string;
   regions: Region[] = [];
 
-  constructor(
-    public formRegion: FormBuilder,
-    private regionService: RegionService
-  ) {}
+  constructor(public fb: FormBuilder, private regionService: RegionService) {}
 
   ngOnInit(): void {
-    this.formR = this.formRegion.group({
+    this.formRegion = this.fb.group({
       label: ['', Validators.required],
     });
 
@@ -31,6 +27,30 @@ export class RegionComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+      }
+    );
+  }
+
+  onSubmit() {
+    const r = new Region();
+    r.label = this.formRegion.value.label;
+    this.regionService.insertRegion(r).subscribe(
+      (data) => {
+        console.log(data);
+        this.formRegion.reset();
+        // recharger la liste des régions après insertion réussie
+        this.regionService.loadRegion().subscribe(
+          (regions: Region[]) => {
+            this.regions = regions;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      },
+      (error) => {
+        console.log(error);
+        this.erreur = "Erreur lors de l'insertion de la région.";
       }
     );
   }
