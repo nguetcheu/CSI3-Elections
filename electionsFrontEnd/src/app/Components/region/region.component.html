@@ -31,14 +31,33 @@
       <div class="card-header">Ajouter une Région</div>
 
       <div class="card-body">
-        <form [formGroup]="formR" (ngSubmit)="onRegisterRegion()">
-          <div class="form-group">
-            <label for="label">Nom de la région:</label>
-            <input type="text" class="form-control" name="label" />
-          </div>
-          <button type="submit" class="btn btn-primary">Ajouter</button>
-        </form>
+        <div class="alert alert-danger">
+          <ul>
+            <li>{{ erreur }}</li>
+          </ul>
+          <p>{{ success }}</p>
+        </div>
+        <br />
       </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Label</td>
+            <td>Date de création de la région</td>
+          </tr>
+        </thead>
+        <tbody *ngIf="regions">
+          <tr *ngFor="let region of regions">
+            <td>{{ region.id }}</td>
+            <td>{{ region.label }}</td>
+            <td>{{ region.created_at }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="/" class="btn btn-outline-primary">Accueil</a>
     </div>
   </body>
 </html>

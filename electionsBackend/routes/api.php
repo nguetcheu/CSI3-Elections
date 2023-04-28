@@ -19,12 +19,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// gestion region
+Route::apiResource("region", RegionController::class);
+
 // désactivation d'un participant
 Route::get('onoff/{id}', [ParticipantController::class, "onoff"]);
 
 Route::apiResource("participant", participantController::class);
-
-Route::apiResource("region", RegionController::class);
 
 Route::apiResource("election", ElectionController::class);
 

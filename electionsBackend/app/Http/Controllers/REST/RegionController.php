@@ -38,7 +38,6 @@ class RegionController extends Controller
             DB::commit();
             return response()->json($region, 201);
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json("{'error: Imposible de sauvegarder une région'}", 404);
         }
     }
