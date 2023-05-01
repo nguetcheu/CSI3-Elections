@@ -24,6 +24,7 @@ export class EditRegionComponent implements OnInit {
   ngOnInit() {
     this.regionForm = this.fb.group({
       label: ['', Validators.required],
+      id: [],
     });
 
     this.regionService.loadRegion().subscribe((data: Region[]) => {
@@ -36,21 +37,31 @@ export class EditRegionComponent implements OnInit {
           (region: Region) => region.id == +regionId
         );
         console.log(this.region);
-        this.success = 'region modifié';
       }
     });
   }
 
   onSubmit() {
     if (this.region) {
-      const updatedRegion = new Region(
-        this.region.id,
-        this.regionForm.value.label
-      );
+      const regionId: string | null = this.route.snapshot.paramMap.get('id')
 
-      this.regionService.updateRegion(updatedRegion).subscribe(() => {
-        // Rediriger l'utilisateur vers la liste des régions
-      });
+      if (regionId) {
+        this.region = this.regions.find((region: Region) => {
+          region.id == Number(regionId);
+
+          const updatedRegion = new Region(
+            this.regionForm.value.id,
+            this.regionForm.value.label
+          );
+          console.log(typeof region.id);
+
+          this.regionService.updateRegion(updatedRegion).subscribe(() => {
+            // Rediriger l'utilisateur vers la liste des régions
+
+            this.success = 'region modifié';
+          });
+        });
+      }
     }
   }
 }

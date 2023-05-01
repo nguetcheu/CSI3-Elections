@@ -48,15 +48,16 @@
             Enregistrer
           </button>
         </form>
+        <p class="text-bg-primary">{{ success }}</p>
         <p class="text-danger">{{ erreur }}</p>
       </div>
 
       <table class="table table-striped">
         <thead>
           <tr>
-            <td>ID</td>
-            <td>Label</td>
-            <td>Actions</td>
+            <th>ID</th>
+            <th>Label</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody *ngIf="regions">
@@ -68,14 +69,14 @@
                 Modifier
               </button>
               <button (click)="deleteRegion(region.id)" class="btn btn-danger">
-                Supprimer
+                Supprimer | X
               </button>
             </td>
           </tr>
         </tbody>
       </table>
-
-      <a href="/" class="btn btn-outline-primary">Accueil</a>
     </div>
+
+    
   </body>
 </html>

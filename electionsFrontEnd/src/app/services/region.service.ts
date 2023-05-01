@@ -32,8 +32,8 @@ export class RegionService {
     return this.http.get<Region>(`${this.CREATE_REGION}/${id}`);
   }
 
+  // Suppression d'une région grace a son id
   deleteRegion(id: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.CREATE_REGION}/${id}`);
   }
-  
 }

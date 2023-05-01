@@ -27,6 +27,7 @@ class Region extends Model
 {
 	use HasFactory;
 	protected $table = 'regions';
+	public $timestamps = false;
 
 	protected $fillable = [
 		'label'

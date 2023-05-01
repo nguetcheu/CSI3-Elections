@@ -46,7 +46,6 @@
       <tr>
         <td>{{$region->id}}</td>
         <td>{{$region->label}}</td>
-        <td>{{$region->created_at}}</td>
         <td>
           @method('DELETE')
           <a href="/region_delete/{{$region->id}}" class="btn btn-outline-danger">Supprimer</a>

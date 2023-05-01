@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('regions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label', 30)->nullable()->default("Nord");
-            $table->timestamps();
+            $table->timestamps(false);
         });
     }
 

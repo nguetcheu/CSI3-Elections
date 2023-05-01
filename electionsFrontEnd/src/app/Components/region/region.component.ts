@@ -10,6 +10,7 @@ import { RegionService } from 'src/app/services/region.service';
   styleUrls: ['./region.component.css'],
 })
 export class RegionComponent implements OnInit {
+  success!: string;
   public formRegion!: FormGroup;
   public erreur!: string;
   regions: Region[] = [];
@@ -21,6 +22,15 @@ export class RegionComponent implements OnInit {
     private router: Router
   ) {}
 
+  ngOnInit(): void {
+    this.formRegion = this.fb.group({
+      label: ['', Validators.required],
+    });
+
+    this.chargementRegion();
+  }
+
+  // récupration de l'observable (un tableau de région) émis par le service
   private chargementRegion() {
     this.regionService.loadRegion().subscribe(
       (data: Region[]) => {
@@ -32,15 +42,6 @@ export class RegionComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.formRegion = this.fb.group({
-      label: ['', Validators.required],
-    });
-
-    // récupration de l'observable (un tableau de région) émis par le service
-    this.chargementRegion();
-  }
-
   onSubmit() {
     const r = new Region();
     r.label = this.formRegion.value.label;
@@ -50,12 +51,22 @@ export class RegionComponent implements OnInit {
         this.formRegion.reset();
         // recharger la liste des régions après insertion réussie
         this.chargementRegion();
+        this.affichageMessage();
       },
       (error) => {
         console.log(error);
         this.erreur = "Erreur lors de l'insertion de la région.";
       }
     );
+  }
+
+  private affichageMessage() {
+    setTimeout(() => {
+      this.success = 'Insertion réussie';
+      setTimeout(() => {
+        this.success = '';
+      }, 2000);
+    }, 3000);
   }
 
   gotoEditRegion(region: Region) {

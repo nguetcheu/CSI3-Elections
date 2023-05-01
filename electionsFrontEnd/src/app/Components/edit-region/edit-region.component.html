@@ -2,6 +2,7 @@
   <div class="col s12 m8 offset-m2">
     <h2 class="header center">{{ region.label }}</h2>
     <form (ngSubmit)="onSubmit()" [formGroup]="regionForm">
+      <input type="number" formControlName="id" id="id" value="{{region.id}}" />
       <div class="form-group">
         <label for="label">Label:</label>
         <input
@@ -12,8 +13,10 @@
           [(ngModel)]="region.label"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Enregistrer</button>
+      <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
     </form>
   </div>
 </div>
 <h4 *ngIf="!region" class="center">Aucune région à afficher !</h4>
+<br />
+<a routerLink="/" class="btn btn-outline-danger">Retourner a l'accueil</a>
