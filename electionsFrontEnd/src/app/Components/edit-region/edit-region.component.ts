@@ -12,7 +12,7 @@ import { RegionService } from 'src/app/services/region.service';
 export class EditRegionComponent implements OnInit {
   success = '';
   regionForm!: FormGroup;
-  region: Region | undefined;
+  region: any;
   regions: Region[] = [];
 
   constructor(
@@ -27,11 +27,12 @@ export class EditRegionComponent implements OnInit {
       id: [],
     });
 
+    const regionId: string | null = this.route.snapshot.paramMap.get('id');
+
     this.regionService.loadRegion().subscribe((data: Region[]) => {
       this.regions = data;
 
-      const regionId: string | null = this.route.snapshot.paramMap.get('id');
-
+      
       if (regionId) {
         this.region = this.regions.find(
           (region: Region) => region.id == +regionId
@@ -41,27 +42,15 @@ export class EditRegionComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.region) {
-      const regionId: string | null = this.route.snapshot.paramMap.get('id')
-
-      if (regionId) {
-        this.region = this.regions.find((region: Region) => {
-          region.id == Number(regionId);
-
-          const updatedRegion = new Region(
-            this.regionForm.value.id,
-            this.regionForm.value.label
-          );
-          console.log(typeof region.id);
-
-          this.regionService.updateRegion(updatedRegion).subscribe(() => {
-            // Rediriger l'utilisateur vers la liste des régions
-
-            this.success = 'region modifié';
-          });
-        });
+  miseAjourRegion(): void {
+    this.regionService.updateRegion(this.region?.id, this.region).subscribe(
+      (response) => {
+        console.log(response);
+        this.success = 'région mise a jour';
+      },
+      (error) => {
+        console.log(error);
       }
-    }
+    );
   }
 }

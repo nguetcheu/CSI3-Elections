@@ -21,9 +21,8 @@ export class RegionService {
     return this.http.get<Region[]>(this.CREATE_REGION);
   }
 
-  // Création d'un observable qui va émettre une région
-  updateRegion(region: Region): Observable<Region> {
-    const url = `${this.CREATE_REGION}/${region.id}`;
+  updateRegion(id: number, region: Region): Observable<Region> {
+    const url = `${this.CREATE_REGION}/${id}`;
     return this.http.put<Region>(url, region);
   }
 

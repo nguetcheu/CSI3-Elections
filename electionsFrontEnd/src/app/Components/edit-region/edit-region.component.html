@@ -1,8 +1,7 @@
 <div *ngIf="region" class="row">
   <div class="col s12 m8 offset-m2">
     <h2 class="header center">{{ region.label }}</h2>
-    <form (ngSubmit)="onSubmit()" [formGroup]="regionForm">
-      <input type="number" formControlName="id" id="id" value="{{region.id}}" />
+    <form (ngSubmit)="miseAjourRegion()" [formGroup]="regionForm">
       <div class="form-group">
         <label for="label">Label:</label>
         <input
@@ -13,7 +12,8 @@
           [(ngModel)]="region.label"
         />
       </div>
-      <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+      <button type="submit" class="btn btn-outline-primary">Mise a jour</button>
+      <p>{{ success }}</p>
     </form>
   </div>
 </div>
