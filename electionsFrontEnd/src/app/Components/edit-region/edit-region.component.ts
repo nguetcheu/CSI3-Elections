@@ -42,6 +42,7 @@ export class EditRegionComponent implements OnInit {
     });
   }
 
+  // Méthode de mise a jour 
   miseAjourRegion(): void {
     this.regionService.updateRegion(this.region?.id, this.region).subscribe(
       (response) => {
