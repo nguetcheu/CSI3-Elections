@@ -21,13 +21,13 @@ export class RegionService {
     return this.http.get<Region[]>(this.CREATE_REGION);
   }
 
-  // Création d'un observable qui va émettre une région qui sera souscris dans le composant EditRegoion
+  // Création d'un observable qui va émettre une région qui sera souscris dans le composant EditRegion
   updateRegion(id: number, region: Region): Observable<Region> {
     const url = `${this.CREATE_REGION}/${id}`;
     return this.http.put<Region>(url, region);
   }
 
-  // Création d'un observable qui va émettre une région qui sera souscris dans le composant EditRegoion
+  // Création d'un observable qui va émettre une région qui sera souscris dans le composant EditRegion
   getRegionById(id: number): Observable<Region> {
     return this.http.get<Region>(`${this.CREATE_REGION}/${id}`);
   }

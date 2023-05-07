@@ -26,22 +26,22 @@
     </style>
 
     <div class="card uper">
-      <div class="card-header">Ajouter une région</div>
+      <div class="card-header">Ajouter un Particpant</div>
       <div class="card-body">
-        <form [formGroup]="formRegion" (ngSubmit)="onSubmit()">
+        <form [formGroup]="formParticipant" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="label">Label:</label>
+            <label for="nom">Nom:</label>
             <input
               type="text"
               class="form-control"
-              id="label"
-              formControlName="label"
+              id="nom"
+              formControlName="nom"
             />
           </div>
           <button
             type="submit"
             class="btn btn-primary"
-            [disabled]="!formRegion.valid"
+            [disabled]="!formParticipant.valid"
           >
             Enregistrer
           </button>
@@ -54,19 +54,34 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Label</th>
-            <th>Actions</th>
+            <th>Nom</th>
+            <th>Num_cni</th>
+            <th>Age</th>
+            <th>Sexe</th>
+            <th>email</th>
+            <th>tel</th>
           </tr>
         </thead>
-        <tbody *ngIf="regions">
-          <tr *ngFor="let region of regions">
-            <td>{{ region.id }}</td>
-            <td>{{ region.label }}</td>
+        <tbody *ngIf="participants">
+          <tr *ngFor="let participant of participants">
+            <td>{{ participant.id }}</td>
+            <td>{{ participant.nom }}</td>
+            <td>{{ participant.num_cni }}</td>
+            <td>{{ participant.age }}</td>
+            <td>{{ participant.sexe }}</td>
+            <td>{{ participant.email }}</td>
+            <td>{{ participant.tel }}</td>
             <td>
-              <button (click)="gotoEditRegion(region)" class="btn btn-primary">
+              <button
+                (click)="gotoEditParticipant(participant)"
+                class="btn btn-primary"
+              >
                 Modifier
               </button>
-              <button (click)="deleteRegion(region.id)" class="btn btn-danger">
+              <button
+                (click)="deleteParticipant(participant.id)"
+                class="btn btn-danger"
+              >
                 Supprimer | X
               </button>
             </td>

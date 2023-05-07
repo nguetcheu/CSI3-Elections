@@ -1,0 +1,39 @@
+/* Hero section styles */
+.hero {
+  background-image: url("../../../assets/election.jpg");
+
+  background-position: center;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+}
+
+/* Card section styles */
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.card {
+  background-color: lightgray;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  flex: 1;
+}
+
+.card h2 {
+  font-family: "Poppins", sans-serif;
+  color: blue;
+}
+
+.card p {
+  font-family: "Poppins", sans-serif;
+  color: white;
+}

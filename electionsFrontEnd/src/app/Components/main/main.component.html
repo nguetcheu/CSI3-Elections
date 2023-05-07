@@ -1,1 +1,21 @@
-<p>main works!</p>
+<section class="hero">
+  <div class="hero-content">
+    <h1>CSI3-ELECAM</h1>
+    <p>Bienvenue sur notre application de gestion élection</p>
+  </div>
+</section>
+
+<section class="cards">
+  <div class="card">
+    <h2>Région</h2>
+    <a [routerLink]="['/region_formulaire']">Gestion région</a>
+  </div>
+  <div class="card">
+    <h2>Participant</h2>
+    <a [routerLink]="['/participant_formulaire']">Gestion participant</a>
+  </div>
+  <div class="card">
+    <h2>Bulletin</h2>
+    <a [routerLink]="['/bulletin_formulaire']">Gestion bulletin</a>
+  </div>
+</section>

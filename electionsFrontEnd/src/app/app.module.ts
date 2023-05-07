@@ -10,6 +10,8 @@ import { MainComponent } from './Components/main/main.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { RegionComponent } from './Components/region/region.component';
 import { EditRegionComponent } from './Components/edit-region/edit-region.component';
+import { ParticipantComponent } from './Components/participant/participant.component';
+import { EditParticipantComponent } from './Components/edit-participant/edit-participant.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { EditRegionComponent } from './Components/edit-region/edit-region.compon
     FooterComponent,
     RegionComponent,
     EditRegionComponent,
+    ParticipantComponent,
+    EditParticipantComponent,
   ],
   imports: [
     BrowserModule,
