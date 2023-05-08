@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $couleur
  * @property string $photo
  * 
- * @property Collection|Vote[] $votes
+ * @property Collection|Vote[] $votes   
  *
  * @package App\Models
  */
