@@ -12,6 +12,12 @@ import { RegionComponent } from './Components/region/region.component';
 import { EditRegionComponent } from './Components/edit-region/edit-region.component';
 import { ParticipantComponent } from './Components/participant/participant.component';
 import { EditParticipantComponent } from './Components/edit-participant/edit-participant.component';
+import { BulletinComponent } from './Components/bulletin/bulletin.component';
+import { EditBulletinComponent } from './Components/edit-bulletin/edit-bulletin.component';
+import { ElectionComponent } from './Components/election/election.component';
+import { EditElectionComponent } from './Components/edit-election/edit-election.component';
+import { VoteComponent } from './Components/vote/vote.component';
+import { EditVoteComponent } from './Components/edit-vote/edit-vote.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,12 @@ import { EditParticipantComponent } from './Components/edit-participant/edit-par
     EditRegionComponent,
     ParticipantComponent,
     EditParticipantComponent,
+    BulletinComponent,
+    EditBulletinComponent,
+    ElectionComponent,
+    EditElectionComponent,
+    VoteComponent,
+    EditVoteComponent,
   ],
   imports: [
     BrowserModule,

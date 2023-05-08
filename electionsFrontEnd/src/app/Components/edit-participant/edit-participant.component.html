@@ -1,7 +1,12 @@
 <div *ngIf="participant" class="row">
   <div class="col s12 m8 offset-m2">
     <h2 class="header center">{{ participant.nom }}</h2>
-    <form (ngSubmit)="miseAjourRegion()" [formGroup]="participantForm">
+    <div class="card-header text-center">Ajouter un Particpant</div>
+    <form
+      (ngSubmit)="miseAjourRegion()"
+      [formGroup]="participantForm"
+      class="col-3"
+    >
       <div class="form-group">
         <label for="nom">Nom:</label>
         <input
@@ -10,6 +15,68 @@
           id="nom"
           formControlName="nom"
           [(ngModel)]="participant.nom"
+        />
+        <label for="num_cni">Num_cni:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="num_cni"
+          formControlName="num_cni"
+          [(ngModel)]="participant.num_cni"
+        />
+        <label for="age">Age:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="age"
+          formControlName="age"
+          [(ngModel)]="participant.age"
+        />
+
+        <label for="id_region">Region ID:</label>
+        <select
+          name="id_region"
+          class="form-control"
+          id="id_region"
+          formControlName="id_region"
+          [(ngModel)]="participant.region"
+        >
+          <option *ngFor="let region of regions" [value]="region.id">
+            {{ region.label }}
+          </option>
+        </select>
+
+        <label for="login">login:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="login"
+          formControlName="login"
+          [(ngModel)]="participant.login"
+        />
+        <label for="pwd">password:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="pwd"
+          formControlName="pwd"
+          [(ngModel)]="participant.pwd"
+        />
+        <label for="email">Email:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          formControlName="email"
+          [(ngModel)]="participant.email"
+        />
+        <label for="tel">Télephone:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tel"
+          formControlName="tel"
+          [(ngModel)]="participant.tel"
         />
       </div>
       <button type="submit" class="btn btn-outline-primary">Mise a jour</button>

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -14,18 +15,32 @@ export class EditParticipantComponent implements OnInit {
   participantForm!: FormGroup;
   participant: any;
   participants: Participant[] = [];
+  regions!: any[];
 
   constructor(
     private participantService: ParticipantService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
     this.participantForm = this.fb.group({
       nom: ['', Validators.required],
-      id: [],
+      num_cni: ['', Validators.required],
+      age: ['', Validators.required],
+      id_region: ['', Validators.required], 
+      login: ['', Validators.required],
+      pwd: ['', Validators.required],
+      email: ['', Validators.required],
+      tel: ['', Validators.required],
     });
+
+    this.http
+      .get<any>('http://localhost:8000/api/region')
+      .subscribe((response) => {
+        this.regions = response;
+      });
 
     const participantId: string | null = this.route.snapshot.paramMap.get('id');
 
