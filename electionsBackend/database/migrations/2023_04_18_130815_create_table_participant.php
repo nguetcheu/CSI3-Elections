@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('num_cni', 100);
             $table->integer('age');
             $table->char('sexe', 1)->default('M');
-            $table->unsignedInteger('id_region');
+            $table->unsignedInteger('id_region')->default(2);
             $table->string('login', 30);
             $table->string('pwd', 100);
             $table->string('email', 40)->nullable();

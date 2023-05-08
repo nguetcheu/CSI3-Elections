@@ -26,40 +26,90 @@
     </style>
 
     <div class="card uper">
-      <div class="card-header">Ajouter un Particpant</div>
+      <div class="card-header text-center">Ajouter un Particpant</div>
       <div class="card-body">
-        <form [formGroup]="formParticipant" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="nom">Nom:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nom"
-              formControlName="nom"
-            />
-            <label for="num_cni">Num_cni:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="num_cni"
-              formControlName="num_cni"
-            />
-            <label for="age">Age:</label>
-            <input
-              type="number"
-              class="form-control"
-              id="age"
-              formControlName="age"
-            />
+        <div class="container">
+          <div class="row">
+            <form
+              [formGroup]="formParticipant"
+              (ngSubmit)="onSubmit()"
+              class="col-3"
+            >
+              <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nom"
+                  formControlName="nom"
+                />
+                <label for="num_cni">Num_cni:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="num_cni"
+                  formControlName="num_cni"
+                />
+                <label for="age">Age:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="age"
+                  formControlName="age"
+                />
+
+                <label for="id_region">Region ID:</label>
+                <select
+                  name="id_region"
+                  class="form-control"
+                  id="id_region"
+                  formControlName="id_region"
+                >
+                  <option *ngFor="let region of regions" [value]="region.id">
+                    {{ region.label }}
+                  </option>
+                </select>
+
+                <label for="login">login:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="login"
+                  formControlName="login"
+                />
+                <label for="pwd">password:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pwd"
+                  formControlName="pwd"
+                />
+                <label for="email">Email:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                />
+                <label for="tel">Télephone:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="tel"
+                  formControlName="tel"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!formParticipant.valid"
+              >
+                Enregistrer
+              </button>
+            </form>
           </div>
-          <button
-            type="submit"
-            class="btn btn-primary"
-            [disabled]="!formParticipant.valid"
-          >
-            Enregistrer
-          </button>
-        </form>
+        </div>
+
         <p class="text-bg-primary">{{ success }}</p>
         <p class="text-danger">{{ erreur }}</p>
       </div>
