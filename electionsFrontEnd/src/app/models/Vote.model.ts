@@ -3,7 +3,7 @@ import { Election } from './Election.model';
 import { Participant } from './Participant.model';
 
 export class Vote {
-  public id!: string;
+  public id!: number;
   public date!: Date;
   public id_election!: Election;
   public id_bulletin!: Bulletin;

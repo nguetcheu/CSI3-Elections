@@ -1,1 +1,32 @@
-<p>edit-bulletin works!</p>
+<div *ngIf="bulletin" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ bulletin.couleur }}</h2>
+    <form (ngSubmit)="miseAjourBulletin()" [formGroup]="bulletinForm">
+      <div class="form-group">
+        <label for="couleur">Couleur:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="couleur"
+          formControlName="couleur"
+          [(ngModel)]="bulletin.couleur"
+        />
+        <label for="photo">Photo:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photo"
+          formControlName="photo"
+          [(ngModel)]="bulletin.photo"
+        />
+      </div>
+      <button type="submit" class="btn btn-outline-primary">Mise a jour</button>
+      <p>{{ success }}</p>
+    </form>
+  </div>
+</div>
+<h4 *ngIf="!bulletin" class="center">Aucune Bulletin à afficher !</h4>
+<br />
+<a routerLink="/bulletin_formulaire" class="btn btn-outline-danger"
+  >Retourner a l'accueil</a
+>

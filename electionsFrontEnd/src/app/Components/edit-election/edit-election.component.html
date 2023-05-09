@@ -1,1 +1,50 @@
-<p>edit-election works!</p>
+<div *ngIf="election" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ election.statut }}</h2>
+    <div class="card-header text-center">Ajouter une élection</div>
+    <form
+      (ngSubmit)="miseAjourElection()"
+      [formGroup]="electionForm"
+      class="col-3"
+    >
+      <div class="form-group">
+        <label for="date">date:</label>
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          formControlName="date"
+          [(ngModel)]="election.date"
+        />
+
+        <label for="label">label:</label>
+        <select
+          name="label"
+          class="form-control"
+          id="label"
+          formControlName="label"
+          [(ngModel)]="election.label"
+        >
+          <option *ngFor="let region of regions" [value]="region.id">
+            {{ region.label }}
+          </option>
+        </select>
+        <label for="description">Description:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          formControlName="description"
+          [(ngModel)]="election.description"
+        />
+      </div>
+      <button type="submit" class="btn btn-outline-primary">Mise a jour</button>
+      <p>{{ success }}</p>
+    </form>
+  </div>
+</div>
+<h4 *ngIf="!election" class="center">Aucune élection à afficher !</h4>
+<br />
+<a routerLink="/election_formulaire" class="btn btn-outline-danger"
+  >Retourner a la liste des élections</a
+>

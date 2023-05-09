@@ -1,1 +1,61 @@
-<p>edit-vote works!</p>
+<div *ngIf="vote" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ vote.statut }}</h2>
+    <div class="card-header text-center">Ajouter un vote</div>
+    <form (ngSubmit)="miseAjourVote()" [formGroup]="voteForm" class="col-3">
+      <div class="form-group">
+        <label for="date">date:</label>
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          formControlName="date"
+          [(ngModel)]="vote.date"
+        />
+        <label for="id_election">Id election</label>
+        <select
+          name="id_election"
+          class="form-control"
+          id="id_election"
+          formControlName="id_election"
+        >
+          <option *ngFor="let election of elections" [value]="election.id">
+            {{ election.statut }}
+          </option>
+        </select>
+        <label for="id_bulletin">Id bulletin</label>
+        <select
+          name="id_bulletin"
+          class="form-control"
+          id="id_bulletin"
+          formControlName="id_bulletin"
+        >
+          <option *ngFor="let bulletin of bulletins" [value]="bulletin.id">
+            {{ bulletin.couleur }}
+          </option>
+        </select>
+        <label for="id_participant">Id participant </label>
+        <select
+          name="id_participant"
+          class="form-control"
+          id="id_participant"
+          formControlName="id_participant"
+        >
+          <option
+            *ngFor="let participant of participants"
+            [value]="participant.id"
+          >
+            {{ participant.nom }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-outline-primary">Mise a jour</button>
+      <p>{{ success }}</p>
+    </form>
+  </div>
+</div>
+<h4 *ngIf="!vote" class="center">Aucun vote à afficher !</h4>
+<br />
+<a routerLink="/vote_formulaire" class="btn btn-outline-danger"
+  >Retourner a la liste des votes</a
+>

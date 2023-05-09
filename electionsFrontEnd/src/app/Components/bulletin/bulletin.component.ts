@@ -46,6 +46,7 @@ export class BulletinComponent implements OnInit {
   onSubmit() {
     const r = new Bulletin();
     r.couleur = this.formBulletin.value.couleur;
+    r.photo = this.formBulletin.value.photo;
     this.bulletinService.insertBulletin(r).subscribe(
       (data) => {
         console.log(data);
@@ -71,7 +72,7 @@ export class BulletinComponent implements OnInit {
   }
 
   gotoEditBulletin(bulletin: Bulletin) {
-    this.router.navigate(['/bulletin', bulletin.id]);
+    this.router.navigate(['/bulletins', bulletin.id]);
   }
 
   deleteBulletin(id: number) {

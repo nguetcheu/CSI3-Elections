@@ -59,7 +59,7 @@ export class EditParticipantComponent implements OnInit {
   }
 
   // Méthode de mise a jour
-  miseAjourRegion(): void {
+  miseAjourParticipant(): void {
     this.participantService
       .updateParticipant(this.participant?.id, this.participant)
       .subscribe(
